@@ -13,6 +13,9 @@ int main() {
      *counter of how many matches*/
     char move1;
     char move2;
+    // A, B, C, D, E, F, G, H, I, J, K, L, M, N, O
+    // A - H for Easy
+    // A - O for Hard
     char *board[][];
     int rowLen;
     int colLen;
