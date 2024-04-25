@@ -1,3 +1,0 @@
-C:/Users/Scooter/CLionProjects/MemoryGame/cmake-build-debug/CMakeFiles/MemoryGame.dir
-C:/Users/Scooter/CLionProjects/MemoryGame/cmake-build-debug/CMakeFiles/edit_cache.dir
-C:/Users/Scooter/CLionProjects/MemoryGame/cmake-build-debug/CMakeFiles/rebuild_cache.dir

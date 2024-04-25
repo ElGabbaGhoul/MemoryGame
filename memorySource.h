@@ -13,8 +13,9 @@ const int EASY_COL = 4;
 const char SPACE = ' ';
 const char UNKNOWN = 'X';
 
-void displayInstructions();
-char createBoard();
+
+void displayInstructions(int currentRound);
+char createBoard(int& diffVar, int& diffVar2);
 void getMove();
 // Showboard should be Overloaded
 void showBoard();
