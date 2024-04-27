@@ -3,9 +3,14 @@
 //
 
 #include "memoryHelper.h"
-void shuffle() {
-    /* input parameter is a board (passed by pointer) and total length.
-    ◦ randomly shuffles the board.
-    ◦ no return values, board is updated by reference.*/
 
+#include <iostream>
+#include <ctime>
+#include <cstdlib>
+
+void shuffle(char* board, int col) {
+    for (int i = 0; i < col; i++){
+        int j = rand() % col;
+        std::swap(board[i], board[j]);
+    }
 }

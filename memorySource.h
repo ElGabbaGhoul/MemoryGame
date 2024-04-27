@@ -15,7 +15,7 @@ const char UNKNOWN = 'X';
 
 
 void displayInstructions(int currentRound);
-char createBoard(int& diffVar, int& diffVar2);
+char createBoard(char *board, int col);
 void getMove();
 // Showboard should be Overloaded
 void showBoard();

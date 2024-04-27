@@ -1,9 +1,15 @@
 #include <iostream>
+#include <ctime>
+#include <cstdlib>
 
 #include "memorySource.h"
 
 
 int main() {
+
+    // Initialize RNG
+    unsigned int seed = static_cast<unsigned int>(time(nullptr));
+    srand(seed);
 
     /*move1,
      *move2,
@@ -16,7 +22,7 @@ int main() {
     // A, B, C, D, E, F, G, H, I, J, K, L, M, N, O
     // A - H for Easy
     // A - O for Hard
-    char *board[][];
+    char *board = nullptr;
     int rowLen;
     int colLen;
     int currentRound = 0;
@@ -26,7 +32,7 @@ int main() {
     displayInstructions(currentRound);
     currentRound++;
     displayInstructions(currentRound);
-    // createBoard();
+    createBoard(board, EASY_COL);
 
     return 0;
 }

@@ -5,6 +5,8 @@
 #include <iostream>
 
 #include "memorySource.h"
+#include "memoryHelper.h"
+
 void displayInstructions(int currentRound) {
     if (currentRound == 0) {
         std::cout << "Long Instructions." << std::endl;
@@ -13,20 +15,16 @@ void displayInstructions(int currentRound) {
     }
 }
 
-// I think it's the required consts, so...array with [][]
-// either [hard_row][hard_col] or [easy_row][easy_col] but since
-// easy are both 4, could do [][easy_col]?
-
-char createBoard(char* board[][EASY_COL]) {
-
+char createBoard(char* board, int col) {
     // dynamically creates a board of the proper size of characters.
-    char *board = nullptr;
-    // int count = 0;
-    // char inChar;
-
+    board = new char[col];
     // places two of each character into the board
-
+    for (int i = 0; i < col; i++){
+        board[i] = (char)('A' + i);
+    }
     // calls shuffle, passing the board, to randomize the location
-
+        shuffle(board, col);
     // returns the board
+    std::cout << "Board Created." << std::endl;
+    return* board;
 }
