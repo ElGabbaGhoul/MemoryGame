@@ -22,7 +22,6 @@ int main() {
     // A, B, C, D, E, F, G, H, I, J, K, L, M, N, O
     // A - H for Easy
     // A - O for Hard
-    char *board = nullptr;
     int rowLen;
     int colLen;
     int currentRound = 0;
@@ -32,7 +31,8 @@ int main() {
     displayInstructions(currentRound);
     currentRound++;
     displayInstructions(currentRound);
-    createBoard(board, EASY_COL);
+    createBoard(EASY_COL);
+    //showBoard(board, EASY_COL);
 
     return 0;
 }

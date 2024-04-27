@@ -8,7 +8,7 @@
 #include <ctime>
 #include <cstdlib>
 
-void shuffle(char* board, int col) {
+void shuffle(char *board, int col) {
     for (int i = 0; i < col; i++){
         int j = rand() % col;
         std::swap(board[i], board[j]);

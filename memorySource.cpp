@@ -15,16 +15,45 @@ void displayInstructions(int currentRound) {
     }
 }
 
-char createBoard(char* board, int col) {
+char createBoard(const int EASY_COL) {
     // dynamically creates a board of the proper size of characters.
-    board = new char[col];
+//    char *board[col] = nullptr;
+    char** board = new char*[EASY_COL];
     // places two of each character into the board
-    for (int i = 0; i < col; i++){
-        board[i] = (char)('A' + i);
+    for (int i = 0; i < EASY_COL; ++i){
+        board[i] = new (char)('A' + i);
     }
+
+    for (int i = 0; i < EASY_COL; i++){
+        for (int j = 0; j < EASY_COL; j++){
+            board[i][j] = (char)('A' + i);
+        }
+    }
+
+    for (int i = 0; i < EASY_COL; i++){
+        for (int j = 0; j < EASY_COL; j++){
+            std::cout << board[i][j] << " ";
+        }
+        std::cout << std::endl;
+    }
+
+
+
     // calls shuffle, passing the board, to randomize the location
-        shuffle(board, col);
+        shuffle(*board, EASY_COL);
     // returns the board
     std::cout << "Board Created." << std::endl;
-    return* board;
+
+    for (int i = 0; i < EASY_COL; i++){
+        delete [] board[i];
+    }
+
+    return **board;
 }
+
+//void showBoard(char* board, int col){
+//    for (int i = 0; i < col; i++){
+//        std::cout << board[i] << " ";
+//    }
+//    std::cout << std::endl;
+//}
