@@ -31,8 +31,8 @@ int main() {
     displayInstructions(currentRound);
     currentRound++;
     displayInstructions(currentRound);
-    createBoard(EASY_COL);
-    //showBoard(board, EASY_COL);
+    char** board = createBoard(EASY_COL);
+    showBoard(board, EASY_COL);
 
     return 0;
 }

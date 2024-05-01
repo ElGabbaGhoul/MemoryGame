@@ -15,10 +15,10 @@ const char UNKNOWN = 'X';
 
 
 void displayInstructions(int currentRound);
-char createBoard(const int EASY_COL);
+char** createBoard(int EASY_COL);
 void getMove();
 // Showboard should be Overloaded
-void showBoard(char *board, int col);
+void showBoard(char **board, int col);
 bool checkMatch();
 void updateBoard();
 
