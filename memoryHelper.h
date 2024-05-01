@@ -5,7 +5,8 @@
 #ifndef MEMORYGAME_MEMORYHELPER_H
 #define MEMORYGAME_MEMORYHELPER_H
 
-void shuffle(char** board, int col);
+void shuffle(char *board, int difficulty);
+int getRandomInt(int difficulty);
 int getInteger();
 bool yesOrNo();
 

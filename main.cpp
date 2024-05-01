@@ -3,6 +3,7 @@
 #include <cstdlib>
 
 #include "memorySource.h"
+#include "memoryHelper.h"
 
 
 int main() {
@@ -13,26 +14,21 @@ int main() {
 
     /*move1,
      *move2,
-     *board (a pointer),
-     *rowLength,
-     *colLength,
      *counter of how many matches*/
     char move1;
     char move2;
-    // A, B, C, D, E, F, G, H, I, J, K, L, M, N, O
-    // A - H for Easy
-    // A - O for Hard
-    int rowLen;
-    int colLen;
+    int matches;
     int currentRound = 0;
 
 
 
     displayInstructions(currentRound);
-    currentRound++;
-    displayInstructions(currentRound);
-    char** board = createBoard(EASY_COL);
-    showBoard(board, EASY_COL);
+    // currentRound++;
+    // displayInstructions(currentRound);
+    int difficulty = getInteger();
+    std::cout << "Difficulty:  " << difficulty << std::endl;
+    char *ptr = createBoard(difficulty);
+    showBoard(ptr, difficulty);
 
     return 0;
 }
