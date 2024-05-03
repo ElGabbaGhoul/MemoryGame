@@ -15,14 +15,13 @@ void shuffle(char *board, int difficulty) {
 
     if (difficulty == 1) {
         int easySize = EASY_COL * EASY_ROW;
-
         for (int i = 0; i < easySize; i++){
             std::swap(board[getRandomInt(difficulty)], board[getRandomInt(difficulty)]);
         }
     } else {
-        for (int i = 0; i < HARD_ROW; i++){
-            int j = rand() % HARD_ROW - 1;
-            std::swap(board[i], board[j]);
+        int hardSize = HARD_COL * HARD_ROW;
+        for (int i = 0; i < hardSize; i++){
+            std::swap(board[getRandomInt(difficulty)], board[getRandomInt(difficulty)]);
         }
     }
 

@@ -26,31 +26,22 @@ char* createBoard(int difficulty) {
         for (int i = 0; i < easySize / 2; i++){
             board[2*i] = 'A' + i;
             board[2*i+1] = 'A' + i;
-            // if (!i % 2 == 0) {
-            //     board[i] = 'A' ;
-            // } else {
-            //     board[i] = 'A' + (i);
             }
 
     } else {
         //create hard board, 5x6
         int hardSize = HARD_COL * HARD_ROW;
         board = new char [hardSize];
-        for (int i = 0; i < hardSize; i++){
-            for (int j = 0; j < hardSize; j++) {
-                int index = i * HARD_COL + j;
-                board[i] = (char)('A' + (index / 2) % (HARD_COL * 2));
-            }
+        for (int i = 0; i < hardSize / 2; i++){
+            board[2*i] = 'A' + i;
+            board[2*i+1] = 'A' + i;
         }
-
-
     }
     std::cout << "Displaying unshuffled board..." << std::endl;
     showBoard(board, difficulty);
-    // calls shuffle, passing the board, to randomize the location
+    // calls shuffle, passing the board to randomize element locations
         shuffle(board, difficulty);
-    // returns the board
-    // showBoard(board, difficulty);
+    // returns board
 
     return board;
 }
@@ -59,14 +50,15 @@ void showBoard(char *board, int difficulty){
     if (difficulty == 1) {
         int easySize = (EASY_ROW * EASY_COL);
         for (int i = 0; i < easySize; i++){
-                std::cout << board[i] << " ";
+            std::cout << board[i] << " ";
         }
         std::cout << std::endl;
     } else {
-        for (int i = 0; i < HARD_ROW * HARD_COL - 1; i++){
+        int hardSize = (HARD_ROW * HARD_COL);
+        for (int i = 0; i < hardSize; i++){
                 std::cout << board[i] << " ";
             }
-            std::cout << std::endl;
-        }
+        std::cout << std::endl;
     }
+}
 
