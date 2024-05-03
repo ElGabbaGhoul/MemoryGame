@@ -10,39 +10,39 @@
 
 #include "memorySource.h"
 
-void shuffle(char *board, int difficulty) {
-    std::cout << "Shuffling board..." << std::endl;
+void shuffle(char **board, int difficulty) {
+    std::cout << "Shuffling Hard board..." << std::endl;
+    int rows = (difficulty == 1) ? EASY_ROW : HARD_ROW;
+    int cols = (difficulty == 1) ? EASY_COL : HARD_COL;
+    int totalElements = rows * cols;
 
-    if (difficulty == 1) {
-        int easySize = EASY_COL * EASY_ROW;
-        for (int i = 0; i < easySize; i++){
-            std::swap(board[getRandomInt(difficulty)], board[getRandomInt(difficulty)]);
-        }
-    } else {
-        int hardSize = HARD_COL * HARD_ROW;
-        for (int i = 0; i < hardSize; i++){
-            std::swap(board[getRandomInt(difficulty)], board[getRandomInt(difficulty)]);
+    // Flatten the 2D board into a 1D array for easier shuffling
+    char* flatBoard = new char[totalElements];
+    for (int i = 0; i < rows; ++i) {
+        for (int j = 0; j < cols; ++j) {
+            flatBoard[i * cols + j] = board[i][j];
         }
     }
 
-}
-
-int getRandomInt(int difficulty) {
-    int randNum;
-    int easySize = EASY_COL * EASY_ROW;
-    int hardSize = HARD_COL * HARD_ROW;
-
-    if (difficulty == 1) {
-        randNum = rand() % easySize;
-    } else {
-        randNum = rand() % hardSize;
+    // Shuffle the flat board
+    for (int i = 0; i < totalElements; ++i) {
+        int j = rand() % totalElements;
+        std::swap(flatBoard[i], flatBoard[j]);
     }
 
-    return randNum;
+    // Unflatten the shuffled flat board back into the 2D board
+    for (int i = 0; i < rows; ++i) {
+        for (int j = 0; j < cols; ++j) {
+            board[i][j] = flatBoard[i * cols + j];
+        }
+    }
+
+    delete[] flatBoard;
 }
 
 
-int getInteger() {
+
+int getDifficultyInteger() {
     int difficulty;
     bool validInput = false;
 
@@ -59,4 +59,37 @@ int getInteger() {
         }
     }
     return difficulty;
+}
+
+int getMoveInteger(int move1[2], int difficulty) {
+    int moveIn1;
+    int moveIn2;
+    bool validInput = false;
+
+    while(!validInput){
+        std::cout << "Choose a column (1-4): " << std::endl;
+        std::cin >> moveIn1;
+        std::cout << "Choose a row (1-4): " << std::endl;
+        std::cin >> moveIn2;
+        if (difficulty == 1){
+            // valid move for easy board
+            if (moveIn1 >= 0 && moveIn1 <= EASY_COL - 1){
+                move1[0] = moveIn1 - 1;
+            }
+            if (moveIn2 >= 0 && moveIn2 <= EASY_ROW - 1){
+                move1[1] = moveIn2 - 1;
+                validInput = true;
+            }
+        }
+        if (difficulty == 2){
+            if (moveIn1 >= 0 && moveIn1 <= HARD_COL - 1){
+                move1[0] = moveIn1 - 1;
+            }
+            if (moveIn2 >= 0 && moveIn2 <= HARD_ROW - 1){
+                move1[1] = moveIn2 - 1;
+                validInput = true;
+            }
+        }
+    }
+    return move1[2];
 }

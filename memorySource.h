@@ -12,13 +12,17 @@ const int EASY_ROW = 4;
 const int EASY_COL = 4;
 const char SPACE = ' ';
 const char UNKNOWN = 'X';
+const int EASY_SIZE = EASY_COL * EASY_ROW;
+const int HARD_SIZE = HARD_COL * HARD_ROW;
 
 
 void displayInstructions(int currentRound);
-char* createBoard(int difficulty);
-void getMove();
-// Showboard should be Overloaded
-void showBoard(char *board, int difficulty);
+char** createBoard(int difficulty);
+// 1 overloaded getMove
+void getMove(char *board, int row, int col, int move1[2], int difficulty);
+void getMove(char *board, int row, int col, int move1[2], int move2[2], int difficulty);
+// 2 overloaded showBoard
+void showBoard(char **board, int difficulty);
 bool checkMatch();
 void updateBoard();
 

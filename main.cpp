@@ -15,8 +15,8 @@ int main() {
     /*move1,
      *move2,
      *counter of how many matches*/
-    char move1;
-    char move2;
+    int move1[2];
+    int move2[2];
     int matches;
     int currentRound = 0;
 
@@ -25,10 +25,11 @@ int main() {
     displayInstructions(currentRound);
     // currentRound++;
     // displayInstructions(currentRound);
-    int difficulty = getInteger();
-    std::cout << "Difficulty:  " << difficulty << std::endl;
-    char *ptr = createBoard(difficulty);
+    int difficulty = getDifficultyInteger();
+    char **ptr = createBoard(difficulty);
     showBoard(ptr, difficulty);
+//    getMove(*ptr, EASY_ROW, EASY_COL, move1, difficulty);
+//    getMove(*ptr, EASY_ROW, EASY_COL, move1, move2, difficulty);
 
     return 0;
 }
