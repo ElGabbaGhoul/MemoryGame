@@ -48,17 +48,21 @@ char* createBoard(int difficulty) {
 
 void showBoard(char *board, int difficulty){
     if (difficulty == 1) {
-        int easySize = (EASY_ROW * EASY_COL);
-        for (int i = 0; i < easySize; i++){
-            std::cout << board[i] << " ";
-        }
-        std::cout << std::endl;
-    } else {
-        int hardSize = (HARD_ROW * HARD_COL);
-        for (int i = 0; i < hardSize; i++){
-                std::cout << board[i] << " ";
+        for (int i = 0; i < EASY_ROW; i++){
+            for (int j = 0; j < EASY_COL; j++){
+                int index = i * EASY_COL + j;
+                std::cout << board[index] << " ";
             }
-        std::cout << std::endl;
+            std::cout << std::endl;
+        }
+    } else {
+        for (int i = 0; i < HARD_ROW; i++){
+            for (int j = 0; j < HARD_COL; j++){
+                int index = i * HARD_COL + j;
+                std::cout << board[index] << " ";
+            }
+            std::cout << std::endl;
+        }
     }
 }
 
