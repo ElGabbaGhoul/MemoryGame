@@ -40,8 +40,6 @@ void shuffle(char **board, int difficulty) {
     delete[] flatBoard;
 }
 
-
-
 int getDifficultyInteger() {
     int difficulty;
     bool validInput = false;
@@ -61,35 +59,39 @@ int getDifficultyInteger() {
     return difficulty;
 }
 
-int getMoveInteger(int move1[2], int difficulty) {
+int getMoveInteger(int move[2], int difficulty) {
     int moveIn1;
     int moveIn2;
     bool validInput = false;
 
     while(!validInput){
-        std::cout << "Choose a column (1-4): " << std::endl;
-        std::cin >> moveIn1;
-        std::cout << "Choose a row (1-4): " << std::endl;
-        std::cin >> moveIn2;
         if (difficulty == 1){
+            std::cout << "Choose a row (1-" << EASY_ROW << "): " << std::endl;
+            std::cin >> moveIn1;
+            std::cout << "Choose a column (1-" << EASY_COL << "): " << std::endl;
+            std::cin >> moveIn2;
             // valid move for easy board
-            if (moveIn1 >= 0 && moveIn1 <= EASY_COL - 1){
-                move1[0] = moveIn1 - 1;
+            if (moveIn1 > 0 && moveIn1 <= EASY_COL){
+                move[0] = moveIn1 - 1;
             }
-            if (moveIn2 >= 0 && moveIn2 <= EASY_ROW - 1){
-                move1[1] = moveIn2 - 1;
+            if (moveIn2 > 0 && moveIn2 <= EASY_ROW){
+                move[1] = moveIn2 - 1;
                 validInput = true;
             }
         }
         if (difficulty == 2){
-            if (moveIn1 >= 0 && moveIn1 <= HARD_COL - 1){
-                move1[0] = moveIn1 - 1;
+            std::cout << "Choose a row (1-" << HARD_ROW << "): " << std::endl;
+            std::cin >> moveIn1;
+            std::cout << "Choose a column (1-" << HARD_COL << "): " << std::endl;
+            std::cin >> moveIn2;
+            if (moveIn1 > 0 && moveIn1 <= HARD_COL){
+                move[0] = moveIn1 - 1;
             }
-            if (moveIn2 >= 0 && moveIn2 <= HARD_ROW - 1){
-                move1[1] = moveIn2 - 1;
+            if (moveIn2 > 0 && moveIn2 <= HARD_ROW){
+                move[1] = moveIn2 - 1;
                 validInput = true;
             }
         }
     }
-    return move1[2];
+    return move[2];
 }

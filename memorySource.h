@@ -19,12 +19,13 @@ const int HARD_SIZE = HARD_COL * HARD_ROW;
 void displayInstructions(int currentRound);
 char** createBoard(int difficulty);
 // 1 overloaded getMove
-void getMove(char *board, int row, int col, int move1[2], int difficulty);
-void getMove(char *board, int row, int col, int move1[2], int move2[2], int difficulty);
+void getMove(char **board, int move1[2], int difficulty);
+void getMove(char **board, int move1[2], int move2[2], int difficulty);
 // 2 overloaded showBoard
 void showBoard(char **board, int difficulty);
-bool checkMatch();
+bool checkMatch(char **board, int move1[2], int move2[2]);
 void updateBoard();
+bool playAgain();
 
 
 

@@ -12,24 +12,29 @@ int main() {
     unsigned int seed = static_cast<unsigned int>(time(nullptr));
     srand(seed);
 
-    /*move1,
-     *move2,
-     *counter of how many matches*/
     int move1[2];
     int move2[2];
-    int matches;
+    int matches = 0;
+    bool match;
+    bool gameOver = false;
+    bool replay;
     int currentRound = 0;
 
 
-
-    displayInstructions(currentRound);
-    // currentRound++;
-    // displayInstructions(currentRound);
-    int difficulty = getDifficultyInteger();
-    char **ptr = createBoard(difficulty);
-    showBoard(ptr, difficulty);
-//    getMove(*ptr, EASY_ROW, EASY_COL, move1, difficulty);
-//    getMove(*ptr, EASY_ROW, EASY_COL, move1, move2, difficulty);
-
+    do {
+        displayInstructions(currentRound);
+        do {
+            int difficulty = getDifficultyInteger();
+            char **ptr = createBoard(difficulty);
+            showBoard(ptr, difficulty);
+            getMove(ptr, move1, difficulty);
+            getMove(ptr, move1, move2, difficulty);
+            match = checkMatch(ptr, move1, move2);
+            if (match){
+                matches++;
+            }
+        } while (matches < 9);
+        replay = playAgain();
+    } while (replay);
     return 0;
 }

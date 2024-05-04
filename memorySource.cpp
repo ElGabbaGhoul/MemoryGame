@@ -43,8 +43,6 @@ char** createBoard(int difficulty) {
             board[i][j] = 'A' + (i * cols + j) / 2;
         }
     }
-    std::cout << "Displaying non-shuffled board..." << std::endl;
-    showBoard(board, difficulty);
     // calls shuffle, passing the board to randomize element locations
         shuffle(board, difficulty);
     // returns board
@@ -69,36 +67,73 @@ void showBoard(char **board, int difficulty){
     }
 }
 
-void getMove(char *board, int EASY_COL, int EASY_ROW, int move1[2], int difficulty){
+void getMove(char **board, int move1[2], int difficulty){
     //get two integers, validate they are in range (0-3)
     getMoveInteger(move1, difficulty);
     //verify that the location is not a space
-    std::cout << "Player move: " << move1[0] << ", " << move1[1] << "." << std::endl;
     int x = move1[0];
     int y = move1[1];
 
-    int idx = y * EASY_COL + x;
-    char position = board[idx];
+    char position = board[x][y];
 
-    std::cout << "Character at position " << x << ", " << y <<": " << position << "." << std::endl;
+    std::cout << "Character at position " << x + 1 << ", " << y + 1 <<": " << position << "." << std::endl;
 }
 
-void getMove(char *board, int row, int col, int move1[2], int move2[2], int difficulty){
+void getMove(char **board, int move1[2], int move2[2], int difficulty){
     getMoveInteger(move2, difficulty);
-    int a = move1[0];
-    int b = move1[1];
+
+    int xOld = move1[0];
+    int yOld = move1[1];
 
     int x = move2[0];
     int y = move2[1];
 
-    if (a == x && b == y){
-        std::cout << "Moves are the same." << std::endl;
+    char position1 = board[xOld][yOld];
+    char position2 = board[x][y];
+
+    if (x == xOld && y == yOld){
+        std::cout << "Moves are the same. Please try again." << std::endl;
+    } else {
+        std::cout << "Character at position: " << x + 1 << ", " << y + 1 <<": " << position2 << "." << std::endl;
     }
 
-    int idx = y * EASY_COL + x;
-    char position = board[idx];
-
-    std::cout << "Character at position " << x << ", " << y <<": " << position << "." << std::endl;
 
 
+}
+
+bool playAgain() {
+    char playAgain;
+
+    while (true) {
+        std::cout << "Would you like to play again? (Y/N)" << std::endl;
+        std::cin >> playAgain;
+
+        if (std::cin.fail()) {
+            std::cin.clear();
+            std::cin.ignore(500, '\n');
+            std::cerr << "Invalid input, please enter a single character, Y or N."
+                      << std::endl;
+        } else {
+            playAgain = char(toupper(playAgain));
+            if (playAgain == 'Y' || playAgain == 'N') {
+                std::cout << "Thank you for playing!" << std::endl;
+                return playAgain == 'Y';
+            }
+        }
+    }
+}
+
+bool checkMatch(char **board, int move1[2], int move2[2]){
+    int x1 = move1[0];
+    int y1 = move1[1];
+
+    int x2 = move2[0];
+    int y2 = move2[1];
+
+    if (board[x1][y1] == board[x2][y2]){
+        std::cout << "MATCH: (" << x1 + 1 << ", " << y1 + 1 <<") = " << board[x1][y1] <<", ";
+        std::cout << "(" << x2 + 1 <<", " << y2 + 1 << ") = " << board[x2][y2] << "!" << std::endl;
+        return true;
+    }
+    return false;
 }
