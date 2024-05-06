@@ -23,13 +23,17 @@ int main() {
 
     do {
         displayInstructions(currentRound);
+        int difficulty = getDifficultyInteger();
+        char **ptr = createBoard(difficulty);
+        showBoard(ptr, EASY_ROW, EASY_COL);
         do {
-            int difficulty = getDifficultyInteger();
-            char **ptr = createBoard(difficulty);
-            showBoard(ptr, difficulty);
             getMove(ptr, move1, difficulty);
+            showBoard(ptr, EASY_ROW, EASY_COL, move1);
             getMove(ptr, move1, move2, difficulty);
+            showBoard(ptr, EASY_ROW, EASY_COL, move1, move2);
+            std::cout << "Guess was: " << move1[0] + 1 << " " << move1[1] + 1 << ", " << move2[0] + 1 << " " << move2[1] + 1 << "." << std::endl;
             match = checkMatch(ptr, move1, move2);
+
             if (match){
                 matches++;
             }

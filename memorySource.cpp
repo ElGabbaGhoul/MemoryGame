@@ -49,23 +49,74 @@ char** createBoard(int difficulty) {
     return board;
 }
 
-void showBoard(char **board, int difficulty){
-    if (difficulty == 1) {
-        for (int i = 0; i < EASY_ROW; i++){
-            for (int j = 0; j < EASY_COL; j++){
-                std::cout << board[i][j] << " ";
+void showBoard(char **board, int row, int col){
+
+// New implementation (to spec)
+//     ◦ input parameters are the board, rowLength, and colLength.
+//     ◦ display the board as a col x row grid using nested for loops.
+//     ▪ for each cell in the board.
+//         • if it is SPACE, show it.
+//         • if not SPACE, show UNKNOWN.
+// ◦ no return values.
+
+for (int i=0; i < row; i++) {
+    for (int j = 0; j < col; j++ ) {
+        std::cout << UNKNOWN << " ";
+    }
+    std::cout << std::endl;
+}
+
+// works with difficulty param
+    // if (difficulty == 1) {
+    //     for (int i = 0; i < EASY_ROW; i++){
+    //         for (int j = 0; j < EASY_COL; j++){
+    //             std::cout << board[i][j] << " ";
+    //         }
+    //         std::cout << std::endl;
+    //     }
+    // } else {
+    //     for (int i = 0; i < HARD_ROW; i++){
+    //         for (int j = 0; j < HARD_COL; j++){
+    //             std::cout << board[i][j] << " ";
+    //         }
+    //         std::cout << std::endl;
+    //     }
+    // }
+}
+
+// show move1
+void showBoard(char **board, int row, int col, int move1[2]) {
+    int x = move1[0];
+    int y = move1[1];
+
+    for (int i=0; i < row; i++) {
+        for (int j = 0; j < col; j++ ) {
+            if (i == x && j == y ) {
+                std::cout << board[x][y] << " ";
+            } else {
+                std::cout << UNKNOWN << " ";
             }
-            std::cout << std::endl;
         }
-    } else {
-        for (int i = 0; i < HARD_ROW; i++){
-            for (int j = 0; j < HARD_COL; j++){
-                std::cout << board[i][j] << " ";
-            }
-            std::cout << std::endl;
-        }
+        std::cout << std::endl;
     }
 }
+
+// show move1 & move2
+void showBoard(char **board, int row, int col, int move1[2], int move2[2]) {
+
+
+    for (int i=0; i < row; i++) {
+        for (int j = 0; j < col; j++ ) {
+            if ((i == move1[0] && j == move1[1]) || (i == move2[0] && j == move2[1])) {
+                std::cout << board[i][j] << " ";
+            } else {
+                std::cout << UNKNOWN << " ";
+            }
+        }
+        std::cout << std::endl;
+    }
+}
+
 
 void getMove(char **board, int move1[2], int difficulty){
     //get two integers, validate they are in range (0-3)

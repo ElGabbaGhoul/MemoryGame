@@ -11,7 +11,7 @@
 #include "memorySource.h"
 
 void shuffle(char **board, int difficulty) {
-    std::cout << "Shuffling Hard board..." << std::endl;
+    std::cout << "Shuffling board..." << std::endl;
     int rows = (difficulty == 1) ? EASY_ROW : HARD_ROW;
     int cols = (difficulty == 1) ? EASY_COL : HARD_COL;
     int totalElements = rows * cols;
