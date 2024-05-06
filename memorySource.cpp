@@ -9,9 +9,13 @@
 
 void displayInstructions(int currentRound) {
     if (currentRound == 0) {
-        std::cout << "Long Instructions." << std::endl;
+        std::cout << "There are 2 of each letter hidden on this board." << std::endl;
+        std::cout << "(A - H for Easy, A - O for Hard.)" << std::endl;
+        std::cout << "Enter your guess one (or two!) numbers at a time." << std::endl;
+        std::cout << "For example, (1 2) for the second spot in the first row. " << std::endl;
+        std::cout << "Match all the letters to win!" << std::endl;
     } else {
-        std::cout << "Short Instructions." << std::endl;
+        std::cout << "Enter your guess one (or two!) numbers at a time." << std::endl;
     }
 }
 
@@ -50,49 +54,26 @@ char** createBoard(int difficulty) {
 }
 
 void showBoard(char **board, int row, int col){
-
-// New implementation (to spec)
-//     ◦ input parameters are the board, rowLength, and colLength.
-//     ◦ display the board as a col x row grid using nested for loops.
-//     ▪ for each cell in the board.
-//         • if it is SPACE, show it.
-//         • if not SPACE, show UNKNOWN.
-// ◦ no return values.
-
-for (int i=0; i < row; i++) {
-    for (int j = 0; j < col; j++ ) {
-        std::cout << UNKNOWN << " ";
+    for (int i=0; i < row; i++) {
+        for (int j = 0; j < col; j++ ) {
+            if (board[i][j] == SPACE) {
+                std::cout << SPACE << " ";
+            } else {
+                std::cout << UNKNOWN << " ";
+            }
+        }
+        std::cout << std::endl;
     }
-    std::cout << std::endl;
-}
-
-// works with difficulty param
-    // if (difficulty == 1) {
-    //     for (int i = 0; i < EASY_ROW; i++){
-    //         for (int j = 0; j < EASY_COL; j++){
-    //             std::cout << board[i][j] << " ";
-    //         }
-    //         std::cout << std::endl;
-    //     }
-    // } else {
-    //     for (int i = 0; i < HARD_ROW; i++){
-    //         for (int j = 0; j < HARD_COL; j++){
-    //             std::cout << board[i][j] << " ";
-    //         }
-    //         std::cout << std::endl;
-    //     }
-    // }
 }
 
 // show move1
 void showBoard(char **board, int row, int col, int move1[2]) {
-    int x = move1[0];
-    int y = move1[1];
-
     for (int i=0; i < row; i++) {
         for (int j = 0; j < col; j++ ) {
-            if (i == x && j == y ) {
-                std::cout << board[x][y] << " ";
+            if (i == move1[0] && j == move1[1] ) {
+                std::cout << board[i][j] << " ";
+            } else if (board[i][j] == SPACE) {
+                std::cout << SPACE << " ";
             } else {
                 std::cout << UNKNOWN << " ";
             }
@@ -103,19 +84,19 @@ void showBoard(char **board, int row, int col, int move1[2]) {
 
 // show move1 & move2
 void showBoard(char **board, int row, int col, int move1[2], int move2[2]) {
-
-
     for (int i=0; i < row; i++) {
         for (int j = 0; j < col; j++ ) {
             if ((i == move1[0] && j == move1[1]) || (i == move2[0] && j == move2[1])) {
-                std::cout << board[i][j] << " ";
-            } else {
-                std::cout << UNKNOWN << " ";
+                    std::cout << board[i][j] << " ";
+                } else if (board[i][j] == SPACE) {
+                    std::cout << SPACE << " ";
+                } else {
+                    std::cout << UNKNOWN << " ";
+                }
             }
+            std::cout << std::endl;
         }
-        std::cout << std::endl;
     }
-}
 
 
 void getMove(char **board, int move1[2], int difficulty){
@@ -182,9 +163,23 @@ bool checkMatch(char **board, int move1[2], int move2[2]){
     int y2 = move2[1];
 
     if (board[x1][y1] == board[x2][y2]){
-        std::cout << "MATCH: (" << x1 + 1 << ", " << y1 + 1 <<") = " << board[x1][y1] <<", ";
-        std::cout << "(" << x2 + 1 <<", " << y2 + 1 << ") = " << board[x2][y2] << "!" << std::endl;
+
         return true;
     }
     return false;
+}
+
+void updateBoard(char **board, int row, int col, int move1[2], int move2[2]) {
+
+    int x1 = move1[0];
+    int y1 = move1[1];
+    int x2 = move2[0];
+    int y2 = move2[1];
+
+    if (checkMatch(board, move1, move2) == true) {
+        std::cout << "MATCH: (" << x1 + 1 << ", " << y1 + 1 <<") = " << board[x1][y1] <<", ";
+        std::cout << "(" << x2 + 1 <<", " << y2 + 1 << ") = " << board[x2][y2] << "!" << std::endl;
+        board[x1][y1] = SPACE;
+        board[x2][y2] = SPACE;
+    }
 }

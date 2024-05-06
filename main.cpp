@@ -16,17 +16,17 @@ int main() {
     int move2[2];
     int matches = 0;
     bool match;
-    bool gameOver = false;
     bool replay;
     int currentRound = 0;
 
 
     do {
-        displayInstructions(currentRound);
         int difficulty = getDifficultyInteger();
         char **ptr = createBoard(difficulty);
         showBoard(ptr, EASY_ROW, EASY_COL);
         do {
+            displayInstructions(currentRound);
+            currentRound++;
             getMove(ptr, move1, difficulty);
             showBoard(ptr, EASY_ROW, EASY_COL, move1);
             getMove(ptr, move1, move2, difficulty);
@@ -35,9 +35,12 @@ int main() {
             match = checkMatch(ptr, move1, move2);
 
             if (match){
+                updateBoard(ptr, EASY_ROW, EASY_COL, move1, move2);
                 matches++;
+                std::cout << "Matches: " << matches << std:: endl;
+                showBoard(ptr, EASY_ROW, EASY_COL);
             }
-        } while (matches < 9);
+        } while (matches <= 8);
         replay = playAgain();
     } while (replay);
     return 0;

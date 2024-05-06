@@ -10,7 +10,7 @@ const int HARD_ROW = 5;
 const int HARD_COL = 6;
 const int EASY_ROW = 4;
 const int EASY_COL = 4;
-const char SPACE = ' ';
+const char SPACE = '_';
 const char UNKNOWN = 'X';
 const int EASY_SIZE = EASY_COL * EASY_ROW;
 const int HARD_SIZE = HARD_COL * HARD_ROW;
@@ -28,7 +28,7 @@ void showBoard(char **board, int row, int col, int move1[2]);
 // show board guess 2
 void showBoard(char **board, int row, int col, int move1[2], int move2[2]);
 bool checkMatch(char **board, int move1[2], int move2[2]);
-void updateBoard();
+void updateBoard(char **board, int row, int col, int move1[2], int move2[2]);
 bool playAgain();
 
 
