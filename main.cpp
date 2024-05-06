@@ -1,3 +1,12 @@
+/*
+Lab 4
+Name: Scott "Marble" Nideffer
+Date: 04/25/2024
+IDE: Clion
+Version: 1.0
+Description: A Memory Game where you match letters. 1 for easy, 2 for hard, match all matches!
+*/
+
 #include <iostream>
 #include <ctime>
 #include <cstdlib>
