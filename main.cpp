@@ -53,7 +53,7 @@ int main() {
             match = checkMatch(ptr, move1, move2);
 
             if (match){
-                updateBoard(ptr, row, col, move1, move2);
+                updateBoard(ptr, move1, move2);
                 matches++;
                 std::cout << "Matches: " << matches << std:: endl;
                 showBoard(ptr, row, col);

@@ -164,7 +164,7 @@ bool checkMatch(char **board, int move1[2], int move2[2]){
     return false;
 }
 
-void updateBoard(char **board, int row, int col, int move1[2], int move2[2]) {
+void updateBoard(char **board, int move1[2], int move2[2]) {
 
     int x1 = move1[0];
     int y1 = move1[1];

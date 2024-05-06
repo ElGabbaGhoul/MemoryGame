@@ -28,7 +28,7 @@ void showBoard(char **board, int row, int col, int move1[2]);
 // show board guess 2
 void showBoard(char **board, int row, int col, int move1[2], int move2[2]);
 bool checkMatch(char **board, int move1[2], int move2[2]);
-void updateBoard(char **board, int row, int col, int move1[2], int move2[2]);
+void updateBoard(char **board, int move1[2], int move2[2]);
 bool playAgain();
 
 
