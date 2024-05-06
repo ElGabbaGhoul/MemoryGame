@@ -64,33 +64,14 @@ int getMoveInteger(int move[2], int difficulty) {
     bool move1Valid = false;
     bool move2Valid = false;
 
-    // while input invalid
-    // same case for diff = 1 || 2
-        // ask question 1
-        // cin input
-            // if cin fails type check, throw err
-        // otherwise, it is checked for range
-            // if it fails range check, throw err
-        // otherwise, it is within range and right type so save it
-        // ask question 2
-        // cin input
-            // if cin fails type check, throw err
-        // otherwise, it is checked for range
-            // if it fails range check, throw err
-        // otherwise, it is within range and right type so save it
-
-// do not ask question 2 until question 1 has valid input.
-
-    // input is valid, return input
-
     // neither move valid
     while (!move1Valid || !move2Valid) {
-        // move1 invalid, true for both difficulties?
+        // easy
         if (difficulty == 1) {
+            // move1 validation
             if (!move1Valid) {
                 std::cout << "Choose a row (1-" << EASY_ROW << "): " << std::endl;
                 std::cin >> moveIn1;
-                // question
                 if (std::cin.fail()){
                     // type validation failure
                     std::cerr << "Invalid Type" << std::endl;
@@ -112,13 +93,13 @@ int getMoveInteger(int move[2], int difficulty) {
                     std::cin >> moveIn2;
 
                     if (std::cin.fail()){
-                        // type failure
+                        // type validation failure
                         std::cerr << "Invalid Type." << std::endl;
                         std::cerr << "Do not enter any other inputs (letters, 2-digit numbers, etc.)" << std::endl;
                         std::cin.clear();
                         std::cin.ignore(50000,'\n');
                     } else if (!(moveIn2 > 0 && moveIn2 <= EASY_COL)) {
-                        // range failure
+                        // range validation failure
                         std::cerr << "Move 2 out of range. " << std::endl;
                         std::cerr << "Range is: 1 - " << EASY_COL << "." << std::endl;
                     } else {
@@ -127,18 +108,18 @@ int getMoveInteger(int move[2], int difficulty) {
                     }
                 }
         }
+        // hard
         if (difficulty == 2) {
             if (!move1Valid){
-                // question
                 std::cout << "Choose a row (1-" << HARD_ROW << "): " << std::endl;
                 std::cin >> moveIn1;
-                // type failure
+                // type validation failure
                 if (std::cin.fail()){
                     std::cerr << "Invalid Type" << std::endl;
                     std::cerr << "Do not enter any other inputs (letters, 2-digit numbers, etc.)" << std::endl;
                     std::cin.clear();
                     std::cin.ignore(50000,'\n');
-                    // range failure
+                    // range validation failure
                 } else if (!(moveIn1 > 0 && moveIn1 <= EASY_ROW)) {
                     std::cerr << "Move 1 out of range. " << std::endl;
                     std::cerr << "Range is: 1 - " << HARD_ROW << "." << std::endl;
@@ -150,13 +131,13 @@ int getMoveInteger(int move[2], int difficulty) {
                     // valid first move, get second
                     std::cout << "Choose a column (1-" << HARD_COL << "): " << std::endl;
                     std::cin >> moveIn2;
-                    // type failure
+                    // type validation failure
                     if (std::cin.fail()) {
                         std::cerr << "Invalid Type." << std::endl;
                         std::cerr << "Do not enter any other inputs (letters, 2-digit numbers, etc.)" << std::endl;
                         std::cin.clear();
                         std::cin.ignore(50000,'\n');
-                        // range failure
+                        // range validation failure
                     } else if (!(moveIn2 > 0 && moveIn2 <= HARD_COL)) {
                         std::cerr << "Move 2 out of range. " << std::endl;
                         std::cerr << "Range is: 1 - " << HARD_COL << "." << std::endl;
@@ -168,6 +149,7 @@ int getMoveInteger(int move[2], int difficulty) {
             }
         }
     }
+    // assign valid moves to 2-element array
     move[0] = moveIn1 - 1;
     move[1] = moveIn2 - 1;
 
