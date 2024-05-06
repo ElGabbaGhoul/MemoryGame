@@ -98,11 +98,8 @@ void showBoard(char **board, int row, int col, int move1[2], int move2[2]) {
         }
     }
 
-
 void getMove(char **board, int move1[2], int difficulty){
-    //get two integers, validate they are in range (0-3)
     getMoveInteger(move1, difficulty);
-    //verify that the location is not a space
     int x = move1[0];
     int y = move1[1];
 
@@ -120,17 +117,15 @@ void getMove(char **board, int move1[2], int move2[2], int difficulty){
     int x = move2[0];
     int y = move2[1];
 
-    char position1 = board[xOld][yOld];
-    char position2 = board[x][y];
+
 
     if (x == xOld && y == yOld){
         std::cout << "Moves are the same. Please try again." << std::endl;
+        getMove(board, move1, move2, difficulty);
     } else {
+        char position2 = board[x][y];
         std::cout << "Character at position: " << x + 1 << ", " << y + 1 <<": " << position2 << "." << std::endl;
     }
-
-
-
 }
 
 bool playAgain() {

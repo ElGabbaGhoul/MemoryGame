@@ -12,6 +12,8 @@ int main() {
     unsigned int seed = static_cast<unsigned int>(time(nullptr));
     srand(seed);
 
+    int col;
+    int row;
     int move1[2];
     int move2[2];
     int matches = 0;
@@ -23,22 +25,29 @@ int main() {
     do {
         int difficulty = getDifficultyInteger();
         char **ptr = createBoard(difficulty);
-        showBoard(ptr, EASY_ROW, EASY_COL);
+        if (difficulty == 1 ) {
+            row = EASY_ROW;
+            col = EASY_COL;
+        } else {
+            col = HARD_COL;
+            row = HARD_ROW;
+        }
+        showBoard(ptr, row, col);
         do {
             displayInstructions(currentRound);
             currentRound++;
             getMove(ptr, move1, difficulty);
-            showBoard(ptr, EASY_ROW, EASY_COL, move1);
+            showBoard(ptr, row, col, move1);
             getMove(ptr, move1, move2, difficulty);
-            showBoard(ptr, EASY_ROW, EASY_COL, move1, move2);
+            showBoard(ptr, row, col, move1, move2);
             std::cout << "Guess was: " << move1[0] + 1 << " " << move1[1] + 1 << ", " << move2[0] + 1 << " " << move2[1] + 1 << "." << std::endl;
             match = checkMatch(ptr, move1, move2);
 
             if (match){
-                updateBoard(ptr, EASY_ROW, EASY_COL, move1, move2);
+                updateBoard(ptr, row, col, move1, move2);
                 matches++;
                 std::cout << "Matches: " << matches << std:: endl;
-                showBoard(ptr, EASY_ROW, EASY_COL);
+                showBoard(ptr, row, col);
             }
         } while (matches <= 8);
         replay = playAgain();

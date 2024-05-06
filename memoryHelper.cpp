@@ -71,10 +71,10 @@ int getMoveInteger(int move[2], int difficulty) {
             std::cout << "Choose a column (1-" << EASY_COL << "): " << std::endl;
             std::cin >> moveIn2;
             // valid move for easy board
-            if (moveIn1 > 0 && moveIn1 <= EASY_COL){
+            if (moveIn1 > 0 && moveIn1 <= EASY_ROW){
                 move[0] = moveIn1 - 1;
             }
-            if (moveIn2 > 0 && moveIn2 <= EASY_ROW){
+            if (moveIn2 > 0 && moveIn2 <= EASY_COL){
                 move[1] = moveIn2 - 1;
                 validInput = true;
             }
@@ -84,10 +84,10 @@ int getMoveInteger(int move[2], int difficulty) {
             std::cin >> moveIn1;
             std::cout << "Choose a column (1-" << HARD_COL << "): " << std::endl;
             std::cin >> moveIn2;
-            if (moveIn1 > 0 && moveIn1 <= HARD_COL){
+            if (moveIn1 > 0 && moveIn1 <= HARD_ROW){
                 move[0] = moveIn1 - 1;
             }
-            if (moveIn2 > 0 && moveIn2 <= HARD_ROW){
+            if (moveIn2 > 0 && moveIn2 <= HARD_COL){
                 move[1] = moveIn2 - 1;
                 validInput = true;
             }
